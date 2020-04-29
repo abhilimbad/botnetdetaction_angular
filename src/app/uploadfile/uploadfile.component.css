@@ -1,0 +1,13 @@
+#label {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+}
+
+.upload-section {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
