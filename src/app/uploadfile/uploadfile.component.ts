@@ -12,6 +12,7 @@ export class UploadfileComponent implements OnInit {
 fileToUpload: File = null
   constructor(private router: Router,private http:HttpClient) { }
   myData:any
+  extension='pcap'
   ngOnInit(): void {
   }
   handleFileInput(files: FileList) {
@@ -20,12 +21,18 @@ fileToUpload: File = null
       filedata:this.fileToUpload,
       user:"admin"
     }  
-    console.log(data)
+  const exe= this.fileToUpload.name.split('.')
+  if(exe[1]==this.extension){
+    
     this.http.post('url',data).subscribe((result)=>{
       console.log(result)
-      this.myData=result
-       localStorage.setItem('result',JSON.stringify(this.myData))
+      // this.myData=result
+      //  localStorage.setItem('result',JSON.stringify(this.myData))
     })
+  }
+  else{
+    window.alert('please upload pcap file')
+  }
 }
 logout()
 {

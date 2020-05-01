@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -9,11 +10,12 @@ import { Router } from '@angular/router';
 })
 export class FlexComponent implements OnInit {
 myData:any
-  constructor(private router: Router) { }
+  constructor(private router: Router,private http:HttpClient) { }
 
   ngOnInit(): void {
-    const a=localStorage.getItem('result')
-    this.myData=JSON.parse(a)
+    this.http.get('url').subscribe((result)=>{
+      this.myData=result;
+    })
   }
 logout()
 {
