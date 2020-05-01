@@ -17,14 +17,17 @@ fileToUpload: File = null
   }
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    const data={
-      filedata:this.fileToUpload,
-      user:"admin"
-    }  
-  const exe= this.fileToUpload.name.split('.')
-  if(exe[1]==this.extension){
-    
-    this.http.post('url',data).subscribe((result)=>{
+    // const data={
+    //   filedata:this.fileToUpload,
+    //   user:"admin"
+    // }  
+    // console.log(data)
+    const ext=this.fileToUpload.name.split(".");
+    if(ext[1]=='pcap'){
+    const data = new FormData()
+    data.append("file",this.fileToUpload)
+    data.append("user","admin")
+    this.http.post('http://127.0.0.1:5000/upload/',data).subscribe((result)=>{
       console.log(result)
       // this.myData=result
       //  localStorage.setItem('result',JSON.stringify(this.myData))
